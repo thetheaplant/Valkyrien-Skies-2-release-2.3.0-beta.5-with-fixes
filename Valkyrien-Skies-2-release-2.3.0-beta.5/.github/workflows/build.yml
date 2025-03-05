@@ -1,0 +1,55 @@
+name: Build
+on:
+  push:
+    branches:
+      - '1.18.x/*'
+      - '1.19.2/*'
+      - '1.20/*'
+      - '1.20.1/*'
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+jobs:
+  validate-gradle:
+    name: "Validate Gradle wrapper"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true # Clone with vs-core submodule
+      - uses: gradle/wrapper-validation-action@v1
+
+  json-yaml-validate:
+    name: "Validate Json/Yaml files"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write # enable write permissions for pull request comments
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: json-yaml-validate
+        id: json-yaml-validate
+        uses: GrantBirki/json-yaml-validate@v2.3.1
+        with:
+          comment: "true" # enable comment mode
+
+  test-server:
+    name: Test Server
+    strategy:
+      matrix:
+        serverType: [ 'fabric', 'forge' ]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20 # Fail after 20 minutes
+    steps:
+      - name: Shallow Clone (--recurse-submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Gradle & Caches
+        uses: "./.github/actions/setup-gradle"
+
+      - name: Test Server
+        uses: ValkyrienSkies/Minecraft-Architectury-Testing@v1.9
+        with:
+          serverType: ${{ matrix.serverType }}

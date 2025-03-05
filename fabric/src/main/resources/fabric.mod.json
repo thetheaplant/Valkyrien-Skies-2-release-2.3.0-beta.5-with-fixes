@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "valkyrienskies",
+  "version": "${version}",
+  "name": "Valkyrien Skies 2",
+  "description": "Moving blocks with physics :)",
+  "authors": [
+    "Tri0de",
+    "Rubydesic"
+  ],
+  "contact": {
+    "homepage": "https://valkyrienskies.org/",
+    "sources": "https://github.com/ValkyrienSkies/Valkyrien-Skies-2/"
+  },
+  "license": "Apache-2.0",
+  "icon": "assets/valkyrienskies/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.valkyrienskies.mod.fabric.common.ValkyrienSkiesModFabric"
+    ],
+    "modmenu": [
+      "org.valkyrienskies.mod.fabric.compat.modmenu.ValkyrienModMenu"
+    ]
+  },
+  "mixins": [
+    "valkyrienskies-common.mixins.json",
+    "valkyrienskies-fabric.mixins.json"
+  ],
+  "accessWidener": "valkyrienskies-common.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "minecraft": "1.20.1",
+    "fabric-api": "*"
+  },
+  "breaks": {
+    "sodium": "<0.5.8",
+    "nvidium": "*"
+  }
+}

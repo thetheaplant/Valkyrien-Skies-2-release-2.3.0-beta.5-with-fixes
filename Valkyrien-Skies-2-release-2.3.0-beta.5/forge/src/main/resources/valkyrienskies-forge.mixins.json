@@ -1,0 +1,32 @@
+{
+  "required": true,
+  "package": "org.valkyrienskies.mod.forge.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "compat.create.MixinBlockBreakingKineticTileEntity",
+    "compat.create.MixinBlocks",
+    "compat.create.MixinControlledContraptionEntity",
+    "compat.immersivengineering.MixinBlockEntityInventory",
+    "compat.tfc.MixinTFCChunkGenerator",
+    "compat.thermalexpansion.MixinTileCoFH",
+    "compat.tis3d.MixinInfraredPacketEntity",
+    "compat.modular_routers.MixinRouterMenu",
+    "feature.forge_interact.MixinIForgePlayer",
+    "feature.water_in_ships_entity.MixinEntity",
+    "world.level.block.FireMixin"
+  ],
+  "client": [
+    "client.render.MixinLevelRenderer",
+    "compat.create.client.MixinContraptionHandlerClient",
+    "compat.create.client.MixinContraptionRenderInfo",
+    "compat.create.client.MixinFlwContraption",
+    "compat.create.client.MixinSuperGlueSelectionHandler",
+    "compat.sodium.MixinRenderSectionManager",
+    "compat.tis3d.MixinCasingTileEntityRender",
+    "compat.tis3d.MixinRenderContextImpl"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}
