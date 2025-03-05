@@ -1,6 +1,0 @@
-[*]
-insert_final_newline=true
-
-[*.{kt,kts,java}]
-indent_size=4
-max_line_length=120
